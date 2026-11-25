@@ -1,0 +1,14 @@
+#! /bin/bash
+
+export EMBRE_path=/home/lujunbo/CODE/EMBRE_SS
+export python_exe=/home/lujunbo/BIN/deepmd-kit-2.2.2/bin/python
+
+work_dir=`pwd`
+coord_file="$1"
+cell_file="$2"
+charge_file="$3"
+
+dos2unix ${coord_file} 1> /dev/null 2> /dev/null
+sed -i 's/[ \t]*$//g' ${coord_file}
+
+${python_exe} ${EMBRE_path}/main/kernel.py ${work_dir} ${coord_file} ${cell_file} ${charge_file}
